@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+  
+  <link href="./style.css" rel="stylesheet">
+  <script>
+    function calculatYearProgress() {
+      const today = new Date();
+      const months = document.querySelectorAll('.m');
+
+      months.forEach((month, index) => {
+        const monthDate = new Date(2025, index); // Using 2025 as per current date context
+
+        if (monthDate.getMonth() < today.getMonth()) {
+          // Past months are fully filled
+          month.classList.add('filled');
+          month.classList.remove('partial');
+        } else if (monthDate.getMonth() === today.getMonth()) {
+          // Current month is partially filled based on days
+          month.classList.add('partial');
+          const daysInMonth = new Date(2025, index + 1, 0).getDate();
+          const daysPassed = today.getDate();
+          const progressPercentage = (daysPassed / daysInMonth) * 100;
+          month.style.setProperty('--progress', `${progressPercentage}%`);
+        }
+      });
+    }
+
+    function calculateWeekProgress() {
+      const today = new Date();
+      const currentDay = today.getDay(); // 0 (Sunday) to 6 (Saturday)
+      const days = document.querySelectorAll('.w');
+
+      days.forEach((day, index) => {
+        if (index < currentDay) {
+          // Past days are fully filled
+          day.classList.add('filled');
+          day.classList.remove('partial');
+        } else if (index === currentDay) {
+          // Current day is partially filled based on hours
+          day.classList.add('partial');
+          const currentHour = today.getHours();
+          const progressPercentage = (currentHour / 24) * 100;
+          day.style.setProperty('--progress', `${progressPercentage}%`);
+        }
+      });
+    }
+
+    window.onload = function () {
+      calculatYearProgress();
+      calculateWeekProgress();
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Year</div>
+    <div class="year-bar">
+      <div class="month m"><span>JAN</span></div>
+      <div class="month m"><span>FEB</span></div>
+      <div class="month m"><span>MAR</span></div>
+      <div class="month m"><span>APR</span></div>
+      <div class="month m"><span>MAY</span></div>
+      <div class="month m"><span>JUN</span></div>
+      <div class="month m"><span>JUL</span></div>
+      <div class="month m"><span>AUG</span></div>
+      <div class="month m"><span>SEP</span></div>
+      <div class="month m"><span>OCT</span></div>
+      <div class="month m"><span>NOV</span></div>
+      <div class="month m"><span>DEC</span></div>
+    </div>
+
+    <div class="title">Week</div>
+    <div class="year-bar">
+      <div class="month w"><span>SUN</span></div>
+      <div class="month w"><span>MON</span></div>
+      <div class="month w"><span>TUE</span></div>
+      <div class="month w"><span>WED</span></div>
+      <div class="month w"><span>THU</span></div>
+      <div class="month w"><span>FRI</span></div>
+      <div class="month w"><span>SAT</span></div>
+    </div>
+  </div>
+</body>
+
+</html>

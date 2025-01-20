@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Caveat Brush", serif;
+  background-color: #f5f5f5;
+  font-style: normal;
+  padding: 1rem;
+  font-weight: 400;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.year-bar {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #999090;
+  display: flex;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.month {
+  flex: 1;
+  border-right: 1px solid #000;
+  padding: 0.5rem 0;
+  background-color: #e8f4ff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month.filled {
+  background-color: #4682B4;
+  color: white;
+}
+
+.month.partial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--progress, 50%);
+  height: 100%;
+  background-color: #4682B4;
+  z-index: 0;
+  transition: width 0.3s ease;
+}
+
+.month span {
+  position: relative;
+  z-index: 1;
+  color: black;
+}
+
+.month.filled span {
+  color: white;
+}
+
+.month:last-child {
+  border-right: none;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.legend {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  flex-shrink: 0;
+}
+
+.experience {
+  background-color: #4682B4;
+}
+
+.opportunity {
+  background-color: #e8f4ff;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 480px) {
+  /* .year-bar {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .month {
+    height: 40px;
+    border-right: none;
+    border-bottom: 1px solid #000;
+  }
+
+  .month:last-child {
+    border-bottom: none;
+  } */
+
+  .month span {
+    font-size: 0.875rem;
+  }
+
+  /* .month.partial::before {
+    width: 100%;
+    height: var(--progress, 50%);
+  } */
+
+} 
+
+/* Rest of the responsive styles remain the same
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .year-bar {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .month {
+    flex: 0 0 25%;
+    height: 40px;
+  }
+
+  .month span {
+    font-size: 0.9rem;
+  }
+
+  .month:nth-child(4n) {
+    border-right: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .month span {
+    font-size: 1rem;
+  }
+
+  .year-bar {
+    max-width: 900px;
+    margin: 2rem auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .year-bar {
+    height: 60px;
+  }
+
+  .month span {
+    font-size: 1.1rem;
+  }
+} */
